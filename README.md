@@ -31,6 +31,7 @@ The program will create a file named `characters_de.pdf` in the root directory.
 *   `-l` or `--language` (required): Language code (e.g., `de`).
 *   `-n` or `--show-name` (optional): If set, the character name is printed on the card overlay. Default: Name is hidden.
 *   `-so` or `--skip-overview` (optional): If set, the overview page at the end of the PDF is skipped. Default: Overview page is printed.
+*   `-d` or `--dry-run` (optional): If set, only one character card is printed and the overview page is skipped. Useful for testing layout.
 
 **Example with all parameters:**
 

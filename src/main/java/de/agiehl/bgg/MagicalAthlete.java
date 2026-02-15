@@ -59,6 +59,10 @@ public class MagicalAthlete {
                 .longOpt("skip-overview")
                 .desc("Do not print overview page")
                 .build());
+        options.addOption(builder("d")
+                .longOpt("dry-run")
+                .desc("Dry run: print only one card and no overview")
+                .build());
 
         CommandLineParser parser = new DefaultParser();
         try {
@@ -66,7 +70,8 @@ public class MagicalAthlete {
             String language = cmd.getOptionValue("l");
             boolean showName = cmd.hasOption("n");
             boolean printOverview = !cmd.hasOption("so");
-            new MagicalAthlete().createPdf(language, showName, printOverview);
+            boolean dryRun = cmd.hasOption("d");
+            new MagicalAthlete().createPdf(language, showName, printOverview, dryRun);
         } catch (ParseException e) {
             LOGGER.log(SEVERE, "Error parsing arguments: {0}", e.getMessage());
             new HelpFormatter().printHelp("MagicalAthlete", options);
@@ -77,7 +82,7 @@ public class MagicalAthlete {
         }
     }
 
-    private void createPdf(String language, boolean showName, boolean printOverview) throws Exception {
+    private void createPdf(String language, boolean showName, boolean printOverview, boolean dryRun) throws Exception {
         ObjectMapper mapper = new ObjectMapper();
 
         JsonNode charactersNode;
@@ -164,6 +169,10 @@ public class MagicalAthlete {
                 // Draw
                 drawCharacter(canvas, currentX, currentY, outerWidth, outerHeight, innerWidth, innerHeight, innerMarginBottom, name, ability, nameFont, abilityFont, showName);
 
+                if (dryRun) {
+                    break;
+                }
+
                 // Move to next position
                 col++;
                 if (col >= 3) {
@@ -186,7 +195,7 @@ public class MagicalAthlete {
             }
         }
 
-        if (printOverview) {
+        if (printOverview && !dryRun) {
             printOverviewPage(document, charactersNode, langNode, bf);
         }
 
