@@ -5,6 +5,9 @@ This tool generates a PDF with character cards for the board game "Magical Athle
 **The Idea:**
 Print the generated PDF on overhead transparency film. Cut out the individual character rectangles and place them into card sleeves along with the original cards. The translated text overlays the original English card, allowing you to play the game in another language without altering the original components.
 
+**Important Printing Instruction:**
+When printing the PDF, ensure that you select **"Actual Size"** (or "100%") in your printer settings. Do **not** select "Fit to Page" or "Shrink to Fit", as this will alter the dimensions of the cards, and they may not fit the original cards correctly.
+
 ## Acknowledgements
 
 A big thank you to **[brettspielelust](https://boardgamegeek.com/profile/brettspielelust)** for providing the [German translations of the abilities](https://boardgamegeek.com/filepage/311951/german-translation-of-atheletes-powers).

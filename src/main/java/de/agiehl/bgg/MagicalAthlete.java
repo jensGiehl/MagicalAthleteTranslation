@@ -130,7 +130,11 @@ public class MagicalAthlete {
         float innerHeight = 2.5f * cm;
 
         // Inner rectangle positioning
-        float innerMarginBottom = 0.9f * cm;
+        // 0.9 cm bottom margin relative to outer
+        // User requested to move it down by 2mm (0.2 cm)
+        // Original: 0.9 cm
+        // New: 0.9 - 0.2 = 0.7 cm
+        float innerMarginBottom = 0.7f * cm;
 
         // Grid layout
         float horizontalGap = 0.2f * cm;
