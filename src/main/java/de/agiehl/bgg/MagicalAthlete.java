@@ -269,10 +269,31 @@ public class MagicalAthlete {
         }
 
         // Ability
-        ColumnText ct = new ColumnText(canvas);
         float padding = 3;
+        float fontSize = abilityFont.getSize();
+        BaseFont baseFont = abilityFont.getBaseFont();
+        int status = ColumnText.NO_MORE_COLUMN;
+
+        while (status == ColumnText.NO_MORE_COLUMN && fontSize > 4) {
+            ColumnText ct = new ColumnText(canvas);
+            ct.setSimpleColumn(ix + padding, iy + padding, ix + iw - padding, iy + ih - padding);
+            Font currentFont = new Font(baseFont, fontSize, abilityFont.getStyle());
+            currentFont.setColor(textColor);
+            Paragraph p = new Paragraph(ability, currentFont);
+            p.setAlignment(ALIGN_CENTER);
+            ct.addElement(p);
+
+            status = ct.go(true);
+            if (status == ColumnText.NO_MORE_COLUMN) {
+                fontSize -= 0.5f;
+            }
+        }
+
+        ColumnText ct = new ColumnText(canvas);
         ct.setSimpleColumn(ix + padding, iy + padding, ix + iw - padding, iy + ih - padding);
-        Paragraph p = new Paragraph(ability, abilityFont);
+        Font finalFont = new Font(baseFont, fontSize, abilityFont.getStyle());
+        finalFont.setColor(textColor);
+        Paragraph p = new Paragraph(ability, finalFont);
         p.setAlignment(ALIGN_CENTER);
         ct.addElement(p);
         ct.go();
