@@ -10,6 +10,7 @@ import static com.lowagie.text.pdf.BaseFont.NOT_EMBEDDED;
 import static com.lowagie.text.pdf.BaseFont.createFont;
 import static com.lowagie.text.pdf.PdfWriter.getInstance;
 import static java.awt.Color.BLACK;
+import static java.util.Objects.requireNonNull;
 import static java.util.logging.Level.WARNING;
 import static java.util.logging.Logger.getLogger;
 
@@ -26,6 +27,7 @@ import com.lowagie.text.pdf.PdfWriter;
 
 import java.io.FileOutputStream;
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Logger;
 
 public class PdfGenerator {
@@ -52,7 +54,7 @@ public class PdfGenerator {
 
     private void initFont() {
         try {
-            String fontPath = getClass().getResource("/Farro-Regular.ttf").toString();
+            String fontPath = requireNonNull(getClass().getResource("/Farro-Regular.ttf")).toString();
             baseFont = createFont(fontPath, IDENTITY_H, EMBEDDED);
         } catch (Exception e) {
             LOGGER.log(WARNING, "Could not load Farro-Regular.ttf from resources: {0}", e.getMessage());
@@ -121,7 +123,7 @@ public class PdfGenerator {
         LOGGER.info("PDF created: characters_" + config.language() + ".pdf");
     }
 
-    private void drawCharacter(PdfContentByte canvas, float x, float y, CharacterData character, Font nameFont, Font abilityFont) throws Exception {
+    private void drawCharacter(PdfContentByte canvas, float x, float y, CharacterData character, Font nameFont, Font abilityFont) {
         canvas.saveState();
 
         // Outer rectangle
@@ -199,7 +201,7 @@ public class PdfGenerator {
         return p;
     }
 
-    private void printOverviewPage(Document document) throws Exception {
+    private void printOverviewPage(Document document) {
         document.newPage();
 
         Font nameFont = new Font(baseFont, 10, Font.BOLD);
