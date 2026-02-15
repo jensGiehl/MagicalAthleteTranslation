@@ -63,6 +63,16 @@ public class MagicalAthlete {
                 .longOpt("dry-run")
                 .desc("Dry run: print only one card and no overview")
                 .build());
+        options.addOption(builder("bg")
+                .longOpt("background-color")
+                .hasArg()
+                .desc("Hex color for inner rectangle background (default: #F5F5DC)")
+                .build());
+        options.addOption(builder("tc")
+                .longOpt("text-color")
+                .hasArg()
+                .desc("Hex color for text and inner rectangle border (default: #000000)")
+                .build());
 
         CommandLineParser parser = new DefaultParser();
         try {
@@ -71,7 +81,22 @@ public class MagicalAthlete {
             boolean showName = cmd.hasOption("n");
             boolean printOverview = !cmd.hasOption("so");
             boolean dryRun = cmd.hasOption("d");
-            new MagicalAthlete().createPdf(language, showName, printOverview, dryRun);
+            
+            String bgColorStr = cmd.getOptionValue("bg", "#F5F5DC");
+            String textColorStr = cmd.getOptionValue("tc", "#000000");
+            
+            Color bgColor;
+            Color textColor;
+            try {
+                bgColor = Color.decode(bgColorStr);
+                textColor = Color.decode(textColorStr);
+            } catch (NumberFormatException e) {
+                LOGGER.warning("Invalid color format. Using defaults.");
+                bgColor = new Color(245, 245, 220);
+                textColor = BLACK;
+            }
+
+            new MagicalAthlete().createPdf(language, showName, printOverview, dryRun, bgColor, textColor);
         } catch (ParseException e) {
             LOGGER.log(SEVERE, "Error parsing arguments: {0}", e.getMessage());
             new HelpFormatter().printHelp("MagicalAthlete", options);
@@ -82,7 +107,7 @@ public class MagicalAthlete {
         }
     }
 
-    private void createPdf(String language, boolean showName, boolean printOverview, boolean dryRun) throws Exception {
+    private void createPdf(String language, boolean showName, boolean printOverview, boolean dryRun, Color bgColor, Color textColor) throws Exception {
         ObjectMapper mapper = new ObjectMapper();
 
         JsonNode charactersNode;
@@ -116,7 +141,9 @@ public class MagicalAthlete {
         }
         
         Font nameFont = new Font(bf, 12, Font.BOLD);
+        nameFont.setColor(textColor);
         Font abilityFont = new Font(bf, 8, Font.NORMAL);
+        abilityFont.setColor(textColor);
 
         // 1 cm = 28.3465 points
         float cm = 28.3465f;
@@ -171,7 +198,7 @@ public class MagicalAthlete {
                 }
 
                 // Draw
-                drawCharacter(canvas, currentX, currentY, outerWidth, outerHeight, innerWidth, innerHeight, innerMarginBottom, name, ability, nameFont, abilityFont, showName);
+                drawCharacter(canvas, currentX, currentY, outerWidth, outerHeight, innerWidth, innerHeight, innerMarginBottom, name, ability, nameFont, abilityFont, showName, bgColor, textColor);
 
                 if (dryRun) {
                     break;
@@ -208,7 +235,7 @@ public class MagicalAthlete {
     }
 
     private void drawCharacter(PdfContentByte canvas, float x, float y, float w, float h, float iw, float ih, float ibm,
-                               String name, String ability, Font nameFont, Font abilityFont, boolean showName) throws Exception {
+                               String name, String ability, Font nameFont, Font abilityFont, boolean showName, Color bgColor, Color textColor) throws Exception {
         canvas.saveState();
 
         // Outer rectangle
@@ -223,19 +250,17 @@ public class MagicalAthlete {
         float iy = y + ibm;
         
         // Background color for inner rectangle
-        // Using a light beige/cream color to be readable but not white (since white can't be printed on transparency)
-        // Color: #F5F5DC (Beige) -> RGB: 245, 245, 220
-        canvas.setColorFill(new Color(245, 245, 220));
+        canvas.setColorFill(bgColor);
         canvas.roundRectangle(ix, iy, iw, ih, 5);
         canvas.fill();
         
         // Border for inner rectangle
-        canvas.setColorStroke(BLACK);
+        canvas.setColorStroke(textColor);
         canvas.roundRectangle(ix, iy, iw, ih, 5); // 5 points radius
         canvas.stroke();
 
-        // Reset fill color to black for text
-        canvas.setColorFill(BLACK);
+        // Reset fill color to text color
+        canvas.setColorFill(textColor);
 
         // Text
         // Name

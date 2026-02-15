@@ -35,11 +35,13 @@ The program will create a file named `characters_de.pdf` in the root directory.
 *   `-n` or `--show-name` (optional): If set, the character name is printed on the card overlay. Default: Name is hidden.
 *   `-so` or `--skip-overview` (optional): If set, the overview page at the end of the PDF is skipped. Default: Overview page is printed.
 *   `-d` or `--dry-run` (optional): If set, only one character card is printed and the overview page is skipped. Useful for testing layout.
+*   `-bg` or `--background-color` (optional): Hex color code for the inner rectangle background (e.g., `#F5F5DC`). Default: `#F5F5DC` (Beige).
+*   `-tc` or `--text-color` (optional): Hex color code for the text and the inner rectangle border (e.g., `#000000`). Default: `#000000` (Black).
 
 **Example with all parameters:**
 
 ```bash
-mvn clean compile exec:java -Dexec.mainClass="de.agiehl.bgg.MagicalAthlete" -Dexec.args="-l de -n -so"
+mvn clean compile exec:java -Dexec.mainClass="de.agiehl.bgg.MagicalAthlete" -Dexec.args="-l de -n -so -bg #FFFFFF -tc #FF0000"
 ```
 
 ## License Information
