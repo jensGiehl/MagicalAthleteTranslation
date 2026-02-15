@@ -1,0 +1,146 @@
+{
+  "alchemist": {
+    "name": "Alchemist",
+    "ability": "Wenn ich bei meinem Hauptzug eine 1 oder 2 würfle, kann ich stattdessen 4 Felder weit ziehen."
+  },
+  "blimp": {
+    "name": "Blimp",
+    "ability": "Wenn ich meinen Zug vor der 2. Ecke beginne, erhalte ich +3 auf meinen Hauptzug.\nAb dieser Ecke oder danach erhalte ich -1."
+  },
+  "coach": {
+    "name": "Coach",
+    "ability": "Alle, die sich auf demselben Feld befinden wie ich, erhalten +1 auf ihren Hauptzug – einschließlich mir selbst."
+  },
+  "baba_yaga": {
+    "name": "Baba Yaga",
+    "ability": "Bringe jede Spielfigur zum Stolpern, die auf meinem Feld anhält – oder wenn ich auf ihrem Feld anhalte."
+  },
+  "centaur": {
+    "name": "Centaur",
+    "ability": "Wenn ich an einer Spielfigur vorbeiziehe, muss diese 2 Felder zurückgehen."
+  },
+  "copy_cat": {
+    "name": "Copy Cat",
+    "ability": "Ich habe die Fähigkeit der Spielfigur, die aktuell in Führung liegt. Bei Gleichstand darf ich wählen."
+  },
+  "banana": {
+    "name": "Banana",
+    "ability": "Wenn eine Spielfigur an mir vorbeiziehe, stolpert sie."
+  },
+  "cheerleader": {
+    "name": "Cheerleader",
+    "ability": "Zu Beginn meines Zuges kann ich die Spielfigur auf dem letzten Platz 2 Felder bewegen.\nTue ich das, bewege ich mich selbst 1 Feld."
+  },
+  "dicemonger": {
+    "name": "Dicemonger",
+    "ability": "Jeder darf seinen Hauptwurf 1x pro Zug neu würfeln. Wenn eine andere Person das tut, bewege ich mich 1 Feld."
+  },
+  "duelist": {
+    "name": "Duelist",
+    "ability": "Wann immer eine Spielfigur auf meinem Feld steht, kann ich „DUELL!“ rufen.\nWir würfeln beide, und wer höher würfelt, zieht 2 Felder. Bei Gleichstand gewinne ich."
+  },
+  "genius": {
+    "name": "Genius",
+    "ability": "Ich kann vorhersagen, welche Zahl ich für meinen Hauptwurf würfeln werde.\nLiege ich richtig, darf ich nach diesem Zug sofort noch 1x ziehen."
+  },
+  "heckler": {
+    "name": "Heckler",
+    "ability": "Wenn eine Spielfigur ihren Zug auf einem Feld beendet, das höchstens 1 Feld von ihrem Startfeld entfernt ist, bewege ich mich 2 Felder."
+  },
+  "egg": {
+    "name": "Egg",
+    "ability": "Vor meinem Rennen ziehe ich 3 neue Karten vom Stapel und wähle 1 aus. Ich habe deren Fähigkeit."
+  },
+  "gunk": {
+    "name": "Gunk",
+    "ability": "Andere Spielfiguren erhalten -1 auf ihren Hauptwurf."
+  },
+  "huge_baby": {
+    "name": "Huge Baby",
+    "ability": "Niemand darf sich auf meinem Feld befinden. Wenn das passieren würde, wird die Spielfigur auf das Feld direkt hinter mir gestellt."
+  },
+  "flip_flop": {
+    "name": "Flip Flop",
+    "ability": "Ich kann auf meinen Hauptwurf verzichten und stattdessen den Platz mit einer anderen Spielfigur tauschen."
+  },
+  "hare": {
+    "name": "Hare",
+    "ability": "Ich erhalte +2 in meinem Hauptzug. Wenn ich meinen Zug alleine in Führung beginne, überspringe ich meinen Zug und erhalte stattdessen einen Bronzechip."
+  },
+  "hypnotist": {
+    "name": "Hypnotist",
+    "ability": "Zu Beginn meines Zuges kann ich eine Spielfigur auf mein Feld teleportieren."
+  },
+  "inchworm": {
+    "name": "Inchworm",
+    "ability": "Wenn eine andere Spielfigur eine 1 in ihrem Hauptwurf würfelt, entfällt dieser Zug und ich bewege mich 1 Feld."
+  },
+  "legs": {
+    "name": "Legs",
+    "ability": "Ich kann auf meinen Hauptwurf verzichten und mich stattdessen 5 Felder bewegen."
+  },
+  "mastermind": {
+    "name": "Mastermind",
+    "ability": "Zu Beginn meines 1. Zuges sage ich voraus, wer das Rennen gewinnt.\nLiege ich richtig, endet das Rennen sofort und ich belege Platz 2."
+  },
+  "lackey": {
+    "name": "Lackey",
+    "ability": "Wenn ein andere Spielfigur eine 6 in ihrem Hauptwurf würfelt, bewege ich mich 2 Felder, bevor sie sich bewegt."
+  },
+  "lovable_loser": {
+    "name": "Lovable Loser",
+    "ability": "Zu Beginn meines Zuges erhalte ich 1 Bronzechip, wenn ich allein auf dem letzten Platz bin."
+  },
+  "mouth": {
+    "name": "M.O.U.T.H.",
+    "ability": "Wenn ich auf einem Feld mit genau einer anderen Spielfigur anhalte, wird diese aus dem Rennen entfernt."
+  },
+  "leaptoad": {
+    "name": "Leaptoad",
+    "ability": "Während meiner Bewegung überspringe ich Felder, auf denen sich andere Spielfiguren befinden."
+  },
+  "magician": {
+    "name": "Magician",
+    "ability": "Ich darf meinen Hauptwurf bis zu zweimal neu würfeln."
+  },
+  "party_animal": {
+    "name": "Party Animal",
+    "ability": "Vor meinem Hauptzug bewegen sich alle Spielfiguren 1 Feld in meine Richtung.\nJede weitere Spielfigur auf meinem Feld gibt mir +1 auf meinen Hauptwurf."
+  },
+  "rocket_scientist": {
+    "name": "Rocket Scientist",
+    "ability": "Wenn ich für meinen Hauptzug würfele, kann ich mich doppelt so weit bewegen wie die gewürfelte Zahl.\nWenn ich das tue, stolpere ich."
+  },
+  "sisyphus": {
+    "name": "Sisyphus",
+    "ability": "Vor meinem Rennen nehme ich 4 Punktchips. Wenn ich eine 6 für meinen Hauptwurf würfele, bewege ich mich nicht, sondern teleportiere mich zum Start und verliere 1 Chip."
+  },
+  "suckerfish": {
+    "name": "Suckerfish",
+    "ability": "Wenn sich eine Spielfigur auf meinem Feld bewegt, darf ich mit auf ihr neues Feld ziehen."
+  },
+  "romantic": {
+    "name": "Romantic",
+    "ability": "Wenn jemand auf einem Feld mit genau einer anderen Spielfigur anhält, bewege ich mich 2 Felder."
+  },
+  "skipper": {
+    "name": "Skipper",
+    "ability": "Wenn jemand eine 1 für seinen Hauptwurf würfelt, bin ich als Nächster dran."
+  },
+  "third_wheel": {
+    "name": "Third Wheel",
+    "ability": "Vor meinem Hauptzug darf ich mich auf ein beliebiges Feld mit genau 2 Spielfiguren teleportieren."
+  },
+  "scoocher": {
+    "name": "Scoocher",
+    "ability": "Wenn die Fähigkeit einer anderen Spielfigur ausgelöst wird, bewege ich mich 1 Feld."
+  },
+  "stickler": {
+    "name": "Stickler",
+    "ability": "Andere Spielfiguren dürfen die Ziellinie nur erreichen, wenn sie genau die Zahl würfeln, die sie benötigen.\nWenn sie zu weit ziehen würden, bleiben sie stehen."
+  },
+  "twin": {
+    "name": "Twin",
+    "ability": "Vor meinem Rennen darf ich eine Spielfigur wählen, die ein vorheriges Rennen gewonnen hat, und mit deren Fähigkeiten antreten."
+  }
+}
