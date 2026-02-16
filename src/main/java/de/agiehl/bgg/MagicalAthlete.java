@@ -19,6 +19,8 @@ import java.util.logging.Logger;
 public class MagicalAthlete {
 
     private static final Logger LOGGER = getLogger(MagicalAthlete.class.getName());
+    private static final String DEFAULT_BG_COLOR = "#003153";
+    private static final String DEFAULT_TEXT_COLOR = "#FFA07A";
 
     public static void main(String[] args) {
         Options options = createOptions();
@@ -64,12 +66,12 @@ public class MagicalAthlete {
         options.addOption(builder("bg")
                 .longOpt("background-color")
                 .hasArg()
-                .desc("Hex color for inner rectangle background (default: #F5F5DC)")
+                .desc("Hex color for inner rectangle background (default: " + DEFAULT_BG_COLOR + ")")
                 .build());
         options.addOption(builder("tc")
                 .longOpt("text-color")
                 .hasArg()
-                .desc("Hex color for text and inner rectangle border (default: #000000)")
+                .desc("Hex color for text and inner rectangle border (default: " + DEFAULT_TEXT_COLOR + ")")
                 .build());
         return options;
     }
@@ -80,8 +82,8 @@ public class MagicalAthlete {
         boolean printOverview = !cmd.hasOption("so");
         boolean dryRun = cmd.hasOption("d");
 
-        String bgColorStr = cmd.getOptionValue("bg", "#F5F5DC");
-        String textColorStr = cmd.getOptionValue("tc", "#000000");
+        String bgColorStr = cmd.getOptionValue("bg", DEFAULT_BG_COLOR);
+        String textColorStr = cmd.getOptionValue("tc", DEFAULT_TEXT_COLOR);
 
         Color bgColor;
         Color textColor;
@@ -90,8 +92,8 @@ public class MagicalAthlete {
             textColor = Color.decode(textColorStr);
         } catch (NumberFormatException e) {
             LOGGER.warning("Invalid color format. Using defaults.");
-            bgColor = new Color(245, 245, 220);
-            textColor = BLACK;
+            bgColor = Color.decode(DEFAULT_BG_COLOR);
+            textColor = Color.decode(DEFAULT_TEXT_COLOR);
         }
 
         return PdfConfig.builder()
