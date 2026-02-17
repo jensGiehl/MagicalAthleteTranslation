@@ -8,7 +8,8 @@ public record PdfConfig(
         boolean printOverview,
         boolean dryRun,
         Color bgColor,
-        Color textColor
+        Color textColor,
+        float cardSpacing
 ) {
     public static Builder builder() {
         return new Builder();
@@ -21,6 +22,7 @@ public record PdfConfig(
         private boolean dryRun;
         private Color bgColor;
         private Color textColor;
+        private float cardSpacing;
 
         public Builder language(String language) {
             this.language = language;
@@ -52,8 +54,13 @@ public record PdfConfig(
             return this;
         }
 
+        public Builder cardSpacing(float cardSpacing) {
+            this.cardSpacing = cardSpacing;
+            return this;
+        }
+
         public PdfConfig build() {
-            return new PdfConfig(language, showName, printOverview, dryRun, bgColor, textColor);
+            return new PdfConfig(language, showName, printOverview, dryRun, bgColor, textColor, cardSpacing);
         }
     }
 }

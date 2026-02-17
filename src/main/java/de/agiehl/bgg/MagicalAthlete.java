@@ -73,6 +73,11 @@ public class MagicalAthlete {
                 .hasArg()
                 .desc("Hex color for text and inner rectangle border (default: " + DEFAULT_TEXT_COLOR + ")")
                 .build());
+        options.addOption(builder("cs")
+                .longOpt("card-spacing")
+                .hasArg()
+                .desc("Spacing between cards in cm (default: 0)")
+                .build());
         return options;
     }
 
@@ -96,6 +101,14 @@ public class MagicalAthlete {
             textColor = Color.decode(DEFAULT_TEXT_COLOR);
         }
 
+        float cardSpacing = 0f;
+        String cardSpacingStr = cmd.getOptionValue("cs", "0");
+        try {
+            cardSpacing = Float.parseFloat(cardSpacingStr);
+        } catch (NumberFormatException e) {
+            LOGGER.warning("Invalid card spacing format. Using default 0.");
+        }
+
         return PdfConfig.builder()
                 .language(language)
                 .showName(showName)
@@ -103,6 +116,7 @@ public class MagicalAthlete {
                 .dryRun(dryRun)
                 .bgColor(bgColor)
                 .textColor(textColor)
+                .cardSpacing(cardSpacing)
                 .build();
     }
 }

@@ -1,6 +1,8 @@
 package de.agiehl.bgg;
 
 import static com.lowagie.text.Element.ALIGN_CENTER;
+import static com.lowagie.text.Font.BOLD;
+import static com.lowagie.text.Font.NORMAL;
 import static com.lowagie.text.PageSize.A4;
 import static com.lowagie.text.pdf.BaseFont.CP1252;
 import static com.lowagie.text.pdf.BaseFont.EMBEDDED;
@@ -29,7 +31,6 @@ import com.lowagie.text.pdf.PdfWriter;
 import java.io.FileOutputStream;
 import java.util.List;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 public class PdfGenerator {
 
@@ -40,8 +41,6 @@ public class PdfGenerator {
     private static final float INNER_WIDTH = 5.2f * CM;
     private static final float INNER_HEIGHT = 2.5f * CM;
     private static final float INNER_MARGIN_BOTTOM = 0.7f * CM;
-    private static final float HORIZONTAL_GAP = 0.2f * CM;
-    private static final float VERTICAL_GAP = 0.2f * CM;
 
     private final PdfConfig config;
     private final List<CharacterData> characters;
@@ -75,13 +74,16 @@ public class PdfGenerator {
         document.open();
         PdfContentByte canvas = writer.getDirectContent();
 
-        Font nameFont = new Font(baseFont, 12, Font.BOLD);
+        Font nameFont = new Font(baseFont, 12, BOLD);
         nameFont.setColor(config.textColor());
-        Font abilityFont = new Font(baseFont, 8, Font.NORMAL);
+        Font abilityFont = new Font(baseFont, 8, NORMAL);
         abilityFont.setColor(config.textColor());
 
-        float totalGridWidth = (3 * OUTER_WIDTH) + (2 * HORIZONTAL_GAP);
-        float totalGridHeight = (3 * OUTER_HEIGHT) + (2 * VERTICAL_GAP);
+        float horizontalGap = config.cardSpacing() * CM;
+        float verticalGap = config.cardSpacing() * CM;
+
+        float totalGridWidth = (3 * OUTER_WIDTH) + (2 * horizontalGap);
+        float totalGridHeight = (3 * OUTER_HEIGHT) + (2 * verticalGap);
         float startX = (A4.getWidth() - totalGridWidth) / 2;
         float startY = (A4.getHeight() - totalGridHeight) / 2 + totalGridHeight - OUTER_HEIGHT;
 
@@ -102,9 +104,9 @@ public class PdfGenerator {
                 col = 0;
                 row++;
                 currentX = startX;
-                currentY -= (OUTER_HEIGHT + VERTICAL_GAP);
+                currentY -= (OUTER_HEIGHT + verticalGap);
             } else {
-                currentX += (OUTER_WIDTH + HORIZONTAL_GAP);
+                currentX += (OUTER_WIDTH + horizontalGap);
             }
 
             if (row >= 3 && characters.indexOf(character) < characters.size() - 1) {
@@ -205,8 +207,8 @@ public class PdfGenerator {
     private void printOverviewPage(Document document) {
         document.newPage();
 
-        Font nameFont = new Font(baseFont, 10, Font.BOLD);
-        Font abilityFont = new Font(baseFont, 6, Font.NORMAL);
+        Font nameFont = new Font(baseFont, 10, BOLD);
+        Font abilityFont = new Font(baseFont, 6, NORMAL);
 
         PdfPTable table = new PdfPTable(new float[]{1, 3});
         table.setWidthPercentage(100);
