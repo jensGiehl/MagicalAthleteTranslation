@@ -10,6 +10,7 @@ import static com.lowagie.text.pdf.BaseFont.NOT_EMBEDDED;
 import static com.lowagie.text.pdf.BaseFont.createFont;
 import static com.lowagie.text.pdf.PdfWriter.getInstance;
 import static java.awt.Color.BLACK;
+import static java.util.Comparator.comparing;
 import static java.util.Objects.requireNonNull;
 import static java.util.logging.Level.WARNING;
 import static java.util.logging.Logger.getLogger;
@@ -27,8 +28,8 @@ import com.lowagie.text.pdf.PdfWriter;
 
 import java.io.FileOutputStream;
 import java.util.List;
-import java.util.Objects;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 public class PdfGenerator {
 
@@ -211,7 +212,11 @@ public class PdfGenerator {
         table.setWidthPercentage(100);
         table.setSpacingBefore(10f);
 
-        for (CharacterData character : characters) {
+        List<CharacterData> sortedCharacters = characters.stream()
+                .sorted(comparing(CharacterData::name))
+                .toList();
+
+        for (CharacterData character : sortedCharacters) {
             PdfPCell nameCell = new PdfPCell(new Paragraph(character.name(), nameFont));
             nameCell.setPadding(5);
             table.addCell(nameCell);
